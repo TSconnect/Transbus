@@ -5,6 +5,32 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+           <style>.navbar{
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+nav{
+	flex: 1px;
+	text-align: right;
+}
+nav ul{
+	display: inline;
+	list-style-type: none;
+}
+nav ul li{
+	display: inline-block;
+	margin-right: 20px;
+}
+.btn:hover{
+	background: #563434;
+}
+.header{
+	background: radial-gradient(#fff);
+}
+.header .row{
+	margin-top: 70px;
+</style>
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
@@ -14,6 +40,21 @@
         {% endblock %}
     </head>
     <body>
+            <div class="header">
+    <div class="container">
+        <div class="navbar">
+            <nav>
+                <ul>
+                    <li><a href="{{ path('home') }}">Acceuil </a></li>
+                    <li><a href="">A propos</li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Reserver</a></li>
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                    <li><a href="{{ path('app_register') }}">S'incrire</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
         {% block body %}{% endblock %}
     </body>
 </html>
