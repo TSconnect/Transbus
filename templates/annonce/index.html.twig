@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+    <h1>Annonce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>LieuDepart</th>
+                <th>LieuArrivee</th>
+                <th>DateEtHeureDepart</th>
+                <th>PrixTrajet</th>
+                <th>NombrePlaceDisponible</th>
+                <th>NomChauffeur</th>
+                <th>TypeVehicule</th>
+                <th>DatePublication</th>
+                <th>DateExpiration</th>
+                <th>EtatAnnonce</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.LieuDepart }}</td>
+                <td>{{ annonce.LieuArrivee }}</td>
+                <td>{{ annonce.DateEtHeureDepart ? annonce.DateEtHeureDepart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.PrixTrajet }}</td>
+                <td>{{ annonce.NombrePlaceDisponible }}</td>
+                <td>{{ annonce.NomChauffeur }}</td>
+                <td>{{ annonce.TypeVehicule }}</td>
+                <td>{{ annonce.DatePublication ? annonce.DatePublication|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.DateExpiration ? annonce.DateExpiration|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.EtatAnnonce }}</td>
+                <td>
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
+                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('annonce_new') }}">Create new</a>
+{% endblock %}
